@@ -7,6 +7,14 @@ import BlogHero from "@/components/BlogHero";
 import CodeSnippet from "@/components/CodeSnippet";
 import Spinner from "@/components/Spinner";
 
+const CircularColorsDemo = dynamic(
+  () => import("@/components/CircularColorsDemo"),
+  {
+    ssr: false,
+    loading: Spinner,
+  }
+);
+
 const DivisionGroupsDemo = dynamic(
   () => import("@/components/DivisionGroupsDemo"),
   {
@@ -40,7 +48,11 @@ async function BlogPost({ params }) {
       <div className={styles.page}>
         <MDXRemote
           source={blogPost.content}
-          components={{ pre: CodeSnippet, DivisionGroupsDemo }}
+          components={{
+            pre: CodeSnippet,
+            CircularColorsDemo,
+            DivisionGroupsDemo,
+          }}
         />
       </div>
     </article>
